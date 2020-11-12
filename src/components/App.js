@@ -9,6 +9,7 @@ import Rating from './Rating';
 import DriverCard from './DriverCard';
 import 'font-awesome/css/font-awesome.min.css';
 import LikeButton from './likebutton/LikeButton';
+import ClickablePicture from './clickablePicture/ClickablePicture';
 
 function App() {
   return (
@@ -107,6 +108,12 @@ function App() {
 
 <LikeButton /> 
 <LikeButton />
+
+
+<ClickablePicture
+  img='/img/persons/maxence.png'
+  imgClicked='/img/persons/maxence-glasses.png'
+/>
 
     </div>
     
