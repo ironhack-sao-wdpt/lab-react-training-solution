@@ -8,7 +8,7 @@ import CreditCard from './CreditCard';
 import Rating from './Rating';
 import DriverCard from './DriverCard';
 import 'font-awesome/css/font-awesome.min.css';
-
+import LikeButton from './likebutton/LikeButton';
 
 function App() {
   return (
@@ -104,6 +104,10 @@ function App() {
           licensePlate: 'BE33ER',
         }}
       />
+
+<LikeButton /> 
+<LikeButton />
+
     </div>
     
   );
