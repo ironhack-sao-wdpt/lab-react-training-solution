@@ -8,6 +8,7 @@ import CreditCard from './CreditCard';
 import Rating from './Rating';
 import DriverCard from './DriverCard';
 import 'font-awesome/css/font-awesome.min.css';
+import SignupPage from './SignupPage';
 
 
 function App() {
@@ -104,6 +105,11 @@ function App() {
           licensePlate: 'BE33ER',
         }}
       />
+
+    <h1>Iteration 15</h1>
+
+      <SignupPage />
+
     </div>
     
   );

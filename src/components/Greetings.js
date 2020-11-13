@@ -24,7 +24,7 @@ function Greetings(props) {
   }
 
   return (
-    <div className="border border-dark m-3 p-2">
+    <div className="">
       <p>
         {greeting(props.lang)} {props.children}
       </p>
