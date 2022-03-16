@@ -1,78 +1,147 @@
 import React, { useState } from 'react';
-import Greetings from './Greetings';
 
-const SignupPage = () => {
+function SignupPage() {
   const [state, setState] = useState({
     email: '',
     password: '',
-    nationality: '',
-    toggleForm: true,
+    nationality: 'de',
+  });
+  const [isBlurred, setIsBlurred] = useState({
+    email: false,
+    password: false,
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target;
+  function handleChange(event) {
+    setState({ ...state, [event.target.name]: event.target.value });
+  }
 
-    setState({
-      ...state,
-      [name]: value,
-    });
+  function handleBlur(event) {
+    if (!isBlurred[event.target.name]) {
+      setIsBlurred({ ...isBlurred, [event.target.name]: true });
+    }
   }
-  function handleClick(e) {
-    e.preventDefault();
-    setState({
-      ...state,
-      toggleForm: !state.toggleForm,
-    });
+
+  function renderGreeting(nationality) {
+    if (nationality === 'en') {
+      return 'Hello';
+    }
+
+    if (nationality === 'de') {
+      return 'Hallo';
+    }
+
+    if (nationality === 'fr') {
+      return 'Bonjour';
+    }
   }
+
+  function validate() {
+    const errors = {};
+
+    // Obs.: NÃO pode ter espaços na regex
+    if (!state.email.match(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/gm)) {
+      errors.email = 'You typed an invalid email';
+    }
+
+    if (
+      !state.password.match(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm
+      )
+    ) {
+      errors.password = 'Your password is too weak';
+    }
+
+    return errors;
+  }
+
+  // LEMBRETE: fazer por extenso
+  function checkValidation(field) {
+    if (isBlurred[field]) {
+      return errors[field] ? 'is-invalid' : 'is-valid';
+    }
+
+    return '';
+  }
+
+  const errors = validate();
+
+  console.log(errors);
+  console.log(state);
 
   return (
-    <div>
-      {state.toggleForm ? (
-        <form className="d-flex flex-column m-3" action="">
-          <label htmlFor="email">Email</label>
+    <div className="m-5">
+      <form>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="signupEmail">
+            E-mail
+          </label>
           <input
-            onChange={handleChange}
             type="email"
+            className={`form-control ${checkValidation('email')}`}
+            id="signupEmail"
             name="email"
-            id=""
+            onChange={handleChange}
+            onBlur={handleBlur}
             value={state.email}
           />
+          {checkValidation('email') && errors.email ? (
+            <div className="invalid-feedback">{errors.email}</div>
+          ) : (
+            <div className="valid-feedback">You type a valid email</div>
+          )}
+        </div>
 
-          <label htmlFor="password">Password</label>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="signupPassword">
+            Password
+          </label>
           <input
-            onChange={handleChange}
             type="password"
+            className={`form-control ${checkValidation('password')}`}
+            id="signupPassword"
             name="password"
-            id=""
+            onChange={handleChange}
+            onBlur={handleBlur}
             value={state.password}
           />
+          {checkValidation('password') && errors.password ? (
+            <div className="invalid-feedback">{errors.password}</div>
+          ) : (
+            <div className="valid-feedback">Your password is strong</div>
+          )}
+        </div>
 
-          <label htmlFor="nationality">Nationality</label>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="signupNationality">
+            Nationality
+          </label>
           <select
-            onChange={handleChange}
+            className="form-select"
+            id="signupNationality"
             name="nationality"
-            id=""
+            onChange={handleChange}
             value={state.nationality}
           >
             <option value="en">English</option>
-            <option value="de">Deutch</option>
+            <option value="de">German</option>
             <option value="fr">French</option>
           </select>
-          <button onClick={handleClick} className="btn btn-primary my-2">
-            Submit
-          </button>
-        </form>
-      ) : (
-        <div>
-          <Greetings lang={state.nationality} />
-          <p>Your email address is: {state.email} </p>
-          <button onClick={handleClick} className="btn btn-primary my-2">
-            Change information
-          </button>
         </div>
-      )}
+
+        <button className="btn btn-primary" type="submit">
+          Sign up
+        </button>
+      </form>
+
+      <hr />
+
+      <p>{renderGreeting(state.nationality)}</p>
+
+      <p>Your email address is: {state.email}</p>
+
+      <p>Your email address {errors.email ? 'is not correct' : 'is correct'}</p>
     </div>
   );
-};
+}
 
 export default SignupPage;
