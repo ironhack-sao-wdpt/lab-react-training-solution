@@ -14,16 +14,15 @@ import LikeButton from './likebutton/LikeButton';
 import ClickablePicture from './clickablePicture/ClickablePicture';
 import Dice from './dice/Dice';
 import Carousel from './Carousel';
-import NumbersTable from './numberstable/NumbersTable'
+import NumbersTable from './numberstable/NumbersTable';
 import IronHelp from './IronHelp';
 import FaceBook from './Facebook';
 
 function App() {
-  const name = 'Laura'
+  const name = 'Laura';
 
   return (
     <div className="App container">
-
       <h1>Iteration 1</h1>
       <IdCard
         lastName="Doe"
@@ -43,26 +42,25 @@ function App() {
         picture="https://randomuser.me/api/portraits/women/44.jpg"
       />
 
-      <hr/>
+      <hr />
       <h1>Iteration 2</h1>
       <Greetings lang="de">Ludwig</Greetings>
       <Greetings lang="fr">François</Greetings>
 
-      <hr/>
+      <hr />
       <h1>Iteration 3</h1>
       <Random min={8} max={10} />
       <Random min={1} max={100} />
 
-      <hr/>
+      <hr />
       <h1>Iteration 4</h1>
       <BoxColor r={255} g={123} b={0} name="julia" />
       <BoxColor r={128} g={255} b={0} />
 
-      <hr/>
+      <hr />
       <h1>Iteration 5</h1>
       <div className="d-flex flex-column align-items-center">
         <div className="w-50">
-
           <CreditCard
             type="Visa"
             number="0123456789018845"
@@ -96,7 +94,7 @@ function App() {
         </div>
       </div>
 
-      <hr/>
+      <hr />
       <h1>Iteration 6</h1>
       <Rating>0</Rating>
       <Rating>1.49</Rating>
@@ -105,7 +103,7 @@ function App() {
       <Rating>4</Rating>
       <Rating>5</Rating>
 
-      <hr/>
+      <hr />
       <h1>Iteration 7</h1>
       <div className="d-flex flex-column align-items-center">
         <div className="w-50">
@@ -127,26 +125,26 @@ function App() {
               licensePlate: 'BE33ER',
             }}
           />
-          </div>
         </div>
+      </div>
 
-      <hr/>
+      <hr />
       <h1>Iteration 8</h1>
       <LikeButton />
       <LikeButton />
 
-      <hr/>
+      <hr />
       <h1>Iteration 9</h1>
       <ClickablePicture
         img="/img/persons/maxence.png"
         imgClicked="/img/persons/maxence-glasses.png"
       />
 
-      <hr/>
+      <hr />
       <h1>Iteration 10</h1>
       <Dice />
 
-      <hr/>
+      <hr />
       <h1>Iteration 11</h1>
       <Carousel
         imgs={[
@@ -157,19 +155,21 @@ function App() {
         ]}
       />
 
-      <hr/>
+      <hr />
       <h1>Iteration 12</h1>
-      <NumbersTable limit={12}/>
+      <NumbersTable limit={12} />
 
-      <hr/>
+      <hr />
       <h1>Iteration 13 - 14</h1>
       <FaceBook />
 
-      <hr/>
+      <hr />
       <h1>Iteration 15</h1>
       <SignupPage />
-      
 
+      <hr />
+      <h1>Iteration 16 - RGBColorPicker</h1>
+      <RGBColorPicker />
     </div>
   );
 }
